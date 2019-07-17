@@ -2,7 +2,7 @@ package com.tobyspring.tobyspring.domain.user;
 
 import java.sql.*;
 
-public class UserDao {
+public abstract class UserDao {
     public void add(User user) throws ClassNotFoundException, SQLException {
         Connection c = getConnection();
         PreparedStatement ps = c.prepareStatement(
@@ -37,8 +37,5 @@ public class UserDao {
         return user;
     }
 
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/springbook?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8", "root", "1234");
-    }
+    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 }
